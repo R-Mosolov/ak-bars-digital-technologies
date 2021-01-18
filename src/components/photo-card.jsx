@@ -30,6 +30,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function PhotoCard(props) {
   const {
+    name,
     description,
     imageURL,
     likes,
@@ -38,20 +39,14 @@ export default function PhotoCard(props) {
   const classes = useStyles();
 
   return (
-    <Card className={classes.root}>
+    <Card className={classes.root} style={{ width: '300px' }}>
       <CardHeader
         avatar={(
           <Avatar aria-label="recipe" className={classes.avatar}>
-            K
+            {name.charAt(0)}
           </Avatar>
         )}
-        action={(
-          <IconButton aria-label="settings">
-            <MoreVertIcon />
-          </IconButton>
-        )}
-        title="KULTURA"
-        subheader="September 14, 2016"
+        title={name}
       />
       {/* TODO: Move unique data about a photo here */}
       <Link to="/photo">
@@ -62,22 +57,6 @@ export default function PhotoCard(props) {
           style={{ cursor: 'pointer' }}
         />
       </Link>
-      <CardContent>
-        <Typography variant="body2" color="textSecondary" component="p">
-          {(description) || 'No description'}
-        </Typography>
-      </CardContent>
-      <CardActions disableSpacing>
-        <IconButton aria-label="add to favorites">
-          <FavoriteIcon />
-          <Typography variant="body2" color="textSecondary" component="p">
-            {likes}
-          </Typography>
-        </IconButton>
-        <IconButton aria-label="share">
-          <ShareIcon />
-        </IconButton>
-      </CardActions>
     </Card>
   );
 }
