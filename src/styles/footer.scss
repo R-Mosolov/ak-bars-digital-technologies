@@ -1,0 +1,15 @@
+@import './mixins/set-background-color.scss';
+
+.footer {
+  @include set-background-color;
+
+  .footer__container_author {
+    height: 75px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    align-self: center;
+    color: white;
+  }
+}

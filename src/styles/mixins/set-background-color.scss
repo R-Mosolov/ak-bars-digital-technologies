@@ -1,0 +1,7 @@
+@mixin set-background-color {
+  background: rgb(0,149,249);
+  background: -moz-linear-gradient(129deg, rgba(0,149,249,1) 0%, rgba(255,0,0,1) 100%);
+  background: -webkit-linear-gradient(129deg, rgba(0,149,249,1) 0%, rgba(255,0,0,1) 100%);
+  background: linear-gradient(129deg, rgba(0,149,249,1) 0%, rgba(255,0,0,1) 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#0095f9",endColorstr="#ff0000",GradientType=1);
+}

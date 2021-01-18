@@ -1,0 +1,5 @@
+@import './mixins/set-background-color.scss';
+
+.header__background {
+  @include set-background-color;
+}
