@@ -28,14 +28,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function PhotoCard(props) {
-  const {
-    name,
-    description,
-    imageURL,
-    likes,
-  } = props;
-
+export default function PokemonCard({ name, imageURL, path }) {
   const classes = useStyles();
 
   return (
@@ -49,11 +42,10 @@ export default function PhotoCard(props) {
         title={name}
       />
       {/* TODO: Move unique data about a photo here */}
-      <Link to="/photo">
+      <Link to={`/pokemons/${path}`}>
         <CardMedia
           className={classes.media}
           image={imageURL}
-          title="Paella dish"
           style={{ cursor: 'pointer' }}
         />
       </Link>

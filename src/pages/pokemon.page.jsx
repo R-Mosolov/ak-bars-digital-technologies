@@ -17,7 +17,7 @@ import MoreVertIcon from '@material-ui/icons/MoreVert';
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    maxWidth: 900,
+    minWidth: 900,
   },
   media: {
     height: 0,
@@ -28,7 +28,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function PhotoPage() {
+export default function PokemonPage({ imageURL }) {
   const classes = useStyles();
 
   return (
@@ -50,10 +50,7 @@ export default function PhotoPage() {
           />
           <CardMedia
             className={classes.media}
-            image={
-              'https://helpx.adobe.com/content/dam/help/en/stock/how-to/visual-reverse-image-search'
-              + '/jcr_content/main-pars/image/visual-reverse-image-search-v2_intro.jpg'
-            }
+            image={imageURL}
             title="Paella dish"
           />
           <CardContent>
