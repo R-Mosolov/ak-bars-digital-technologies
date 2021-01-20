@@ -6,18 +6,16 @@ import Card from '@material-ui/core/Card';
 import CardHeader from '@material-ui/core/CardHeader';
 import CardMedia from '@material-ui/core/CardMedia';
 import CardContent from '@material-ui/core/CardContent';
-import CardActions from '@material-ui/core/CardActions';
 import Avatar from '@material-ui/core/Avatar';
-import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
 import { red } from '@material-ui/core/colors';
-import FavoriteIcon from '@material-ui/icons/Favorite';
-import ShareIcon from '@material-ui/icons/Share';
-import MoreVertIcon from '@material-ui/icons/MoreVert';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemText from '@material-ui/core/ListItemText';
 
 const useStyles = makeStyles((theme) => ({
   root: {
     minWidth: 900,
+    backgroundColor: theme.palette.background.paper,
   },
   media: {
     height: 0,
@@ -27,6 +25,8 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: red[500],
   },
 }));
+
+const ListItemLink = (props) => <ListItem button component="a" {...props} />;
 
 const extractCharacteristics = (characteristics) => {
   return ([
@@ -46,11 +46,16 @@ const extractAbilities = (abilities) => {
   return ([
       ...abilities.map((ability, idx) => {
         return (
-          <Typography variant="body2" color="textSecondary" component="p">
-            {(abilities.length > 1) ? '– ' : ''}
-            {ability.name}
-            {(idx === abilities.length - 1) ? '.' : ';'}
-          </Typography>
+          <ListItemLink>
+            <ListItemText
+              primary={
+                `${(abilities.length > 1) ? '– ' : ''}`
+                + `${ability.name}`
+                + `${(idx === abilities.length - 1) ? '.' : ';'}`
+              }
+              style={{ color: 'rgba(0, 0, 0, 0.60)' }}
+            />
+          </ListItemLink>
         );
     }),
   ]);
