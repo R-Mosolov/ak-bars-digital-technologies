@@ -1,4 +1,6 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
+
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import Box from '@material-ui/core/Box';
@@ -46,16 +48,21 @@ const extractAbilities = (abilities) => {
   return ([
       ...abilities.map((ability, idx) => {
         return (
-          <ListItemLink>
-            <ListItemText
-              primary={
-                `${(abilities.length > 1) ? '– ' : ''}`
-                + `${ability.name}`
-                + `${(idx === abilities.length - 1) ? '.' : ';'}`
-              }
-              style={{ color: 'rgba(0, 0, 0, 0.60)' }}
-            />
-          </ListItemLink>
+          <Link
+            to="/abilities/1"
+            style={{ textDecoration: 'none' }}
+          >
+            <ListItemLink>
+              <ListItemText
+                primary={
+                  `${(abilities.length > 1) ? '– ' : ''}`
+                  + `${ability.name}`
+                  + `${(idx === abilities.length - 1) ? '.' : ';'}`
+                }
+                style={{ color: 'rgba(0, 0, 0, 0.60)' }}
+              />
+            </ListItemLink>
+          </Link>
         );
     }),
   ]);

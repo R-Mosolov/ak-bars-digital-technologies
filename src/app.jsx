@@ -10,6 +10,7 @@ import Header from './components/header';
 import Footer from './components/footer';
 import MainPage from './pages/main.page';
 import PokemonPage from './pages/pokemon.page';
+import AbilityPage from './pages/ability.page';
 
 // Create pages list
 const pagesPaths = [];
@@ -118,6 +119,16 @@ class App extends Component {
                       : 'NO ABILITIES'
                   }
                 />
+              </Route>
+            )),
+          ]}
+          {[
+            ...pagesPaths.map((path, idx) => (
+              <Route
+                key={Math.random() * 10000}
+                path={`/abilities/${path}`}
+              >
+                <AbilityPage />
               </Route>
             )),
           ]}

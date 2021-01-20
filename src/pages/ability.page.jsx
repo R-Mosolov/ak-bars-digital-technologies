@@ -28,7 +28,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function PhotoPage() {
+export default function AbilityPage() {
   const classes = useStyles();
 
   return (
