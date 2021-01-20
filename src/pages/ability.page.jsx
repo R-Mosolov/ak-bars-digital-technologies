@@ -59,7 +59,11 @@ export default function PhotoPage() {
           <CardContent>
             <Typography variant="body2" color="textSecondary" component="p">
               TYPE: ...
+            </Typography>
+            <Typography variant="body2" color="textSecondary" component="p">
               CHARACTERISTICS: ...
+            </Typography>
+            <Typography variant="body2" color="textSecondary" component="p">
               ABILITIES: ...
             </Typography>
           </CardContent>

@@ -73,11 +73,52 @@ export default class MainPage extends Component {
     });
   }
 
+  searchByName() {
+    const searchQuery = document.getElementById('search-by-names').value.toString().toUpperCase();
+
+    // const searchQuery = document.getElementById('search-query').value.toString().toLowerCase();
+    // const searchQueryLength = searchQuery.length;
+
+    // return this.setState({
+    //   manuscriptsList: manuscriptsList.filter((manuscript) => {
+    //     if (
+    //       manuscript.title.toLowerCase().substring(0, searchQueryLength)
+    //       === searchQuery.substring(0, searchQueryLength)
+    //     ) {
+    //       return true;
+    //     }
+
+    //     else if (
+    //       manuscript.author.toLowerCase().substring(0, searchQueryLength)
+    //       === searchQuery.substring(0, searchQueryLength)
+    //     ) {
+    //       return true;
+    //     }
+
+    //     else if (
+    //       manuscript.type.toLowerCase().substring(0, searchQueryLength)
+    //       === searchQuery.substring(0, searchQueryLength)
+    //     ) {
+    //       return true;
+    //     }
+
+    //     else if (
+    //       manuscript.creationDate.toString().substring(0, searchQueryLength)
+    //       === searchQuery.substring(0, searchQueryLength)
+    //     ) {
+    //       return true;
+    //     }
+    //   }),
+    // });
+
+    return alert(searchQuery);
+  }
+
   render() {
     return (
       <Container maxWidth="lg">
         <div className="d-flex justify-content-end mt-4">
-          <Searcher />
+          <Searcher testProp={this.searchByName} />
         </div>
         <div className="d-flex flex-wrap justify-content-between">
           {this.renderPhotos()}
