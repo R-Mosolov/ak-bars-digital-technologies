@@ -12,12 +12,12 @@ import MainPage from './pages/main.page';
 import PokemonPage from './pages/pokemon.page';
 
 // Create pages list
-let pagesPaths = [];
-let pokemonsTypes = [];
-let pokemonsCharacteristics = [];
-const MAX_PAGES_COUNT = 10
+const pagesPaths = [];
+const pokemonsTypesContent = [];
+const pokemonsCharacteristicsContent = [];
+const MAX_PAGES_COUNT = 10;
 
-for (let i = 1; i <= MAX_PAGES_COUNT; i++) {
+for (let i = 1; i <= MAX_PAGES_COUNT; i += 1) {
   pagesPaths.push(i);
 }
 
@@ -38,63 +38,68 @@ class App extends Component {
 
   async componentDidMount() {
     // TODO: Add a spinner here working while data are loading
-    
+
     // Get pokemons names
     fetch('https://pokeapi.co/api/v2/pokemon')
       .then((res) => res.json())
       .then((res) => this.setState({
         pokemonsNames: res.results,
         areNames: true,
-      }))
+      }));
 
-    for (let i = 1; i <= MAX_PAGES_COUNT; i++) {
-      
+    for (let i = 1; i <= MAX_PAGES_COUNT; i += 1) {
       // Get pokemons types
       fetch(`https://pokeapi.co/api/v2/type/${i}/`)
         .then((res) => res.json())
         .then((res) => {
-          pokemonsTypes.push(res.name);
+          pokemonsTypesContent.push(res.name);
           return this.setState({
-            pokemonsTypes: pokemonsTypes,
+            pokemonsTypes: pokemonsTypesContent,
             areTypes: true,
-          })
+          });
         });
 
       // Get pokemons characteristics
       fetch(`https://pokeapi.co/api/v2/characteristic/${i}/`)
         .then((res) => res.json())
         .then((res) => {
-          pokemonsCharacteristics.push(res.descriptions);
+          pokemonsCharacteristicsContent.push(res.descriptions);
           return this.setState({
-            pokemonsCharacteristics: pokemonsCharacteristics,
+            pokemonsCharacteristics: pokemonsCharacteristicsContent,
             areCharacteristics: true,
-          })
+          });
         });
     }
   }
 
   render() {
+    const {
+      pokemonsNames, pokemonsTypes, pokemonsCharacteristics,
+      areNames, areTypes, areCharacteristics,
+    } = this.state;
+
     return (
       <Router>
         <Header />
         <Switch>
           {[
-            ...pagesPaths.map((path, idx) => {
-              return (
-                <Route path={`/pokemons/${path}`}>
-                  <PokemonPage
-                    imageURL={`https://pokeres.bastionbot.org/images/pokemon/${path}.png`}
-                    name={(this.state.areNames) ? this.state.pokemonsNames[idx].name : "NO NAME"}
-                    type={(this.state.areTypes) ? this.state.pokemonsTypes[idx] : "NO TYPE"}
-                    characteristics={
-                      (this.state.areCharacteristics)
-                        ? this.state.pokemonsCharacteristics[idx]
-                        : "NO CHARACTERISTICS"
+            ...pagesPaths.map((path, idx) => (
+              <Route
+                key={Math.random() * 10000}
+                path={`/pokemons/${path}`}
+              >
+                <PokemonPage
+                  imageURL={`https://pokeres.bastionbot.org/images/pokemon/${path}.png`}
+                  name={(areNames) ? pokemonsNames[idx].name : 'NO NAME'}
+                  type={(areTypes) ? pokemonsTypes[idx] : 'NO TYPE'}
+                  characteristics={
+                      (areCharacteristics)
+                        ? pokemonsCharacteristics[idx]
+                        : 'NO CHARACTERISTICS'
                     }
-                  />
-                </Route>
-              )
-            })
+                />
+              </Route>
+            )),
           ]}
           <Route path="/">
             <MainPage />
@@ -103,7 +108,7 @@ class App extends Component {
         <Footer />
       </Router>
     );
-  };
+  }
 }
 
 export default App;

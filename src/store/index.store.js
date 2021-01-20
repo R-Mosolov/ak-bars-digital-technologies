@@ -2,7 +2,6 @@
 // import { createStore } from 'redux';
 // import reducer from './reducer';
 
-
 // // Set initial state
 // const initialState = [
 
