@@ -41,17 +41,7 @@ export default class MainPage extends Component {
         areNames: true,
       }))
 
-    // Get pokemons images
-    fetch(URL)
-      .then((res) => res.json())
-      .then(
-        (res) => {
-          this.setState({ allPhotos: res });
-          return console.log(this.state.allPhotos);
-        },
-        (err) => console.log(err),
-      )
-      .catch((err) => console.log(err));
+    // Get pokemons types
   }
 
   renderPhotos() {
@@ -64,7 +54,7 @@ export default class MainPage extends Component {
           <PokemonCard
             imageURL={image}
             name={(this.state.areNames)
-              ? this.state.pokemonsNames[idx + 1].name.toUpperCase()
+              ? this.state.pokemonsNames[idx].name.toUpperCase()
               : 'No name'
             }
             path={idx + 1}

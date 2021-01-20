@@ -28,7 +28,21 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function PokemonPage({ imageURL }) {
+const extractCharacteristics = (characteristics) => {
+  return ([
+      ...characteristics.map((characteristic, idx) => {
+        return (
+          <Typography variant="body2" color="textSecondary" component="p">
+            {(characteristics.length > 1) ? '– ' : ''}
+            {characteristic.description}
+            {(idx === characteristics.length - 1) ? '.' : ';'}
+          </Typography>
+        );
+    }),
+  ]);
+};
+
+export default function PokemonPage({ name, imageURL, type, characteristics }) {
   const classes = useStyles();
 
   return (
@@ -38,7 +52,7 @@ export default function PokemonPage({ imageURL }) {
           <CardHeader
             avatar={(
               <Avatar aria-label="recipe" className={classes.avatar}>
-                R
+                {name.charAt(0).toUpperCase()}
               </Avatar>
             )}
             action={(
@@ -46,19 +60,37 @@ export default function PokemonPage({ imageURL }) {
                 <MoreVertIcon />
               </IconButton>
             )}
-            title="TITLE"
+            title={name.toUpperCase()}
           />
           <CardMedia
             className={classes.media}
             image={imageURL}
-            title="Paella dish"
           />
           <CardContent>
-            <Typography variant="body2" color="textSecondary" component="p">
-              TYPE: ...
-              CHARACTERISTICS: ...
-              ABILITIES: ...
-            </Typography>
+            <Box mt={2}>
+              <Typography variant="h5" color="textSecondary" component="p">
+                TYPE:
+              </Typography>
+              <Typography variant="body2" color="textSecondary" component="p">
+                {type.toUpperCase()}
+                .
+              </Typography>
+            </Box>
+            <Box mt={2}>
+              <Typography variant="h5" color="textSecondary" component="p">
+                CHARACTERISTICS:
+              </Typography>
+              {extractCharacteristics(characteristics)}
+              {console.log(characteristics)}
+            </Box>
+            <Box mt={2}>
+              <Typography variant="h5" color="textSecondary" component="p">
+                ABILITIES:
+              </Typography>
+              <Typography variant="body2" color="textSecondary" component="p">
+                ...
+              </Typography>
+            </Box>
           </CardContent>
           <CardActions disableSpacing>
             <IconButton aria-label="add to favorites">
