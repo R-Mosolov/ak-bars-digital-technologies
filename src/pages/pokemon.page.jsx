@@ -42,7 +42,21 @@ const extractCharacteristics = (characteristics) => {
   ]);
 };
 
-export default function PokemonPage({ name, imageURL, type, characteristics }) {
+const extractAbilities = (abilities) => {
+  return ([
+      ...abilities.map((ability, idx) => {
+        return (
+          <Typography variant="body2" color="textSecondary" component="p">
+            {(abilities.length > 1) ? '– ' : ''}
+            {ability.name}
+            {(idx === abilities.length - 1) ? '.' : ';'}
+          </Typography>
+        );
+    }),
+  ]);
+};
+
+export default function PokemonPage({ name, imageURL, type, characteristics, abilities }) {
   const classes = useStyles();
 
   return (
@@ -54,11 +68,6 @@ export default function PokemonPage({ name, imageURL, type, characteristics }) {
               <Avatar aria-label="recipe" className={classes.avatar}>
                 {name.charAt(0).toUpperCase()}
               </Avatar>
-            )}
-            action={(
-              <IconButton aria-label="settings">
-                <MoreVertIcon />
-              </IconButton>
             )}
             title={name.toUpperCase()}
           />
@@ -81,25 +90,14 @@ export default function PokemonPage({ name, imageURL, type, characteristics }) {
                 CHARACTERISTICS:
               </Typography>
               {extractCharacteristics(characteristics)}
-              {console.log(characteristics)}
             </Box>
             <Box mt={2}>
               <Typography variant="h5" color="textSecondary" component="p">
                 ABILITIES:
               </Typography>
-              <Typography variant="body2" color="textSecondary" component="p">
-                ...
-              </Typography>
+              {extractAbilities(abilities)}
             </Box>
           </CardContent>
-          <CardActions disableSpacing>
-            <IconButton aria-label="add to favorites">
-              <FavoriteIcon />
-            </IconButton>
-            <IconButton aria-label="share">
-              <ShareIcon />
-            </IconButton>
-          </CardActions>
         </Card>
       </Box>
     </Container>

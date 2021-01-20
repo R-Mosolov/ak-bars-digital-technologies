@@ -15,6 +15,7 @@ import PokemonPage from './pages/pokemon.page';
 const pagesPaths = [];
 const pokemonsTypesContent = [];
 const pokemonsCharacteristicsContent = [];
+const pokemonsAbilitiesContent = [];
 const MAX_PAGES_COUNT = 10;
 
 for (let i = 1; i <= MAX_PAGES_COUNT; i += 1) {
@@ -29,10 +30,13 @@ class App extends Component {
       pokemonsNames: [],
       pokemonsTypes: [],
       pokemonsCharacteristics: [],
+      pokemonsAbilities: [],
 
+      // TODO: Connect the lodash function instead Boolean operators
       areNames: false,
       areTypes: false,
       areCharacteristics: false,
+      areAbilities: false,
     };
   }
 
@@ -69,13 +73,24 @@ class App extends Component {
             areCharacteristics: true,
           });
         });
+
+      // Get pokemons abilities
+      fetch(`https://pokeapi.co/api/v2/ability/${i}/`)
+        .then((res) => res.json())
+        .then((res) => {
+          pokemonsAbilitiesContent.push(res.names);
+          return this.setState({
+            pokemonsAbilities: pokemonsAbilitiesContent,
+            areAbilities: true,
+          });
+        });
     }
   }
 
   render() {
     const {
-      pokemonsNames, pokemonsTypes, pokemonsCharacteristics,
-      areNames, areTypes, areCharacteristics,
+      pokemonsNames, pokemonsTypes, pokemonsCharacteristics, pokemonsAbilities,
+      areNames, areTypes, areCharacteristics, areAbilities,
     } = this.state;
 
     return (
@@ -93,10 +108,15 @@ class App extends Component {
                   name={(areNames) ? pokemonsNames[idx].name : 'NO NAME'}
                   type={(areTypes) ? pokemonsTypes[idx] : 'NO TYPE'}
                   characteristics={
-                      (areCharacteristics)
-                        ? pokemonsCharacteristics[idx]
-                        : 'NO CHARACTERISTICS'
-                    }
+                    (areCharacteristics)
+                      ? pokemonsCharacteristics[idx]
+                      : 'NO CHARACTERISTICS'
+                  }
+                  abilities={
+                    (areAbilities)
+                      ? pokemonsAbilities[idx]
+                      : 'NO ABILITIES'
+                  }
                 />
               </Route>
             )),
