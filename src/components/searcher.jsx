@@ -34,7 +34,7 @@ export default function Searcher(props) {
       <InputBase
         id="search-by-names"
         className={classes.input}
-        placeholder="Search query..."
+        placeholder="Does not work yet..."
         inputProps={{ 'aria-label': 'search google maps' }}
         onChange={props.testProp}
       />

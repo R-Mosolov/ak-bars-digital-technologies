@@ -1,38 +1,39 @@
-// // Redux dependencies
-// import { createStore } from 'redux';
-// import reducer from './reducer';
+// Redux dependencies
+import { createStore } from 'redux';
+import reducer from './reducer';
 
-// // Set initial state
-// const initialState = [
 
-// ];
 
-// // Set actions
-// const searchByNames = () => ({ type: 'SEARCH_BY_NAMES' });
+// Set initial state
+let initialState = [];
 
-// // Create reducer
-// const reducer = (state = initialState, action) => {
-//   const { type } = action;
+// Set actions
+const searchByNames = () => ({ type: 'SEARCH_BY_NAMES' });
 
-//   switch (type) {
-//     case 'FILTER_BY_LARGE_MANUSCRIPTS':
-//       return initialState.filter((manuscript) => {
-//         if (
-//           manuscript.type === utils.getLabelById(MONOGRAPH, MANUSCRIPT_TYPES)
-//           || manuscript.type === utils.getLabelById(TEACHING_AID, MANUSCRIPT_TYPES)
-//         ) {
-//           return true;
-//         }
-//       });
+// Create reducer
+// TODO: Change this algorithm
+const reducer = (state = initialState, action) => {
+  const { type } = action;
 
-//     default:
-//       return initialState;
-//   }
-// };
+  switch (type) {
+    case 'SEARCH_BY_NAMES':
+      return initialState.filter((manuscript) => {
+        if (
+          manuscript.type === utils.getLabelById(MONOGRAPH, MANUSCRIPT_TYPES)
+          || manuscript.type === utils.getLabelById(TEACHING_AID, MANUSCRIPT_TYPES)
+        ) {
+          return true;
+        }
+      });
 
-// // Create store
-// const store = createStore(reducer);
+    default:
+      return initialState;
+  }
+};
 
-// export {
-//   store,
-// };
+// Create store
+const store = createStore(reducer);
+
+export {
+  store,
+};

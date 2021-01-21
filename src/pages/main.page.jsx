@@ -40,8 +40,6 @@ export default class MainPage extends Component {
         pokemonsNames: res.results,
         areNames: true,
       }))
-
-    // Get pokemons types
   }
 
   renderPhotos() {

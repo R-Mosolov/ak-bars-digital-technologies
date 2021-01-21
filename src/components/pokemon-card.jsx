@@ -34,7 +34,6 @@ export default function PokemonCard({ name, imageURL, path }) {
         )}
         title={name}
       />
-      {/* TODO: Move unique data about a photo here */}
       <Link to={`/pokemons/${path}`}>
         <CardMedia
           className={classes.media}
